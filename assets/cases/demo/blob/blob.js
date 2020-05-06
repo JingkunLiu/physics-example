@@ -92,10 +92,10 @@ cc.Class({
         var selfX = this.node.x;
         var selfY = this.node.y;
 
-        var distance = Math.sqrt((x-selfX)*(x-selfX) + (y-selfY)*(y-selfY));
-        var velocity = cc.v2(x-selfX, y-selfY);
+        var distance = Math.sqrt((x - selfX) * (x - selfX) + (y - selfY) * ( y - selfY));
+        var velocity = cc.v2(x - selfX, y - selfY);
         velocity.normalizeSelf();
-        velocity.mulSelf(distance*2);
+        velocity.mulSelf(distance * 2);
 
         this.spheres.forEach(function (sphere) {
             sphere.linearVelocity = velocity;
@@ -111,8 +111,8 @@ cc.Class({
 
         points.shift();
 
-        var result = smooth( points );
-        var firstControlPoints = result[0];
+        var result              = smooth(points);
+        var firstControlPoints  = result[0];
         var secondControlPoints = result[1];
 
         var pos = points[0];
@@ -121,11 +121,11 @@ cc.Class({
         ctx.moveTo(pos.x, pos.y);
 
         for (var i = 1, len = points.length; i < len; i++) {
-            var firstControlPoint = firstControlPoints[i - 1],
+            var firstControlPoint  = firstControlPoints[i - 1],
                 secondControlPoint = secondControlPoints[i - 1];
 
             ctx.bezierCurveTo(
-                firstControlPoint.x, firstControlPoint.y,
+                firstControlPoint.x,  firstControlPoint.y,
                 secondControlPoint.x, secondControlPoint.y,
                 points[i].x, points[i].y
             );
