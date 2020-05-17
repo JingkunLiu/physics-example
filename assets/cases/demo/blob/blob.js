@@ -9,7 +9,7 @@ cc.Class({
         particleNumber: 12,
         particleRadius: 30,
         sphereSize: 12
-        
+
     },
 
     // use this for initialization
@@ -79,7 +79,7 @@ cc.Class({
 
         let body = node.addComponent(cc.RigidBody);
 
-        let collider = node.addComponent(cc.PhysicsCircleCollider);
+        let collider         = node.addComponent(cc.PhysicsCircleCollider);
         collider.density     = 1;
         collider.restitution = 0.4;
         collider.friction    = 0.5;

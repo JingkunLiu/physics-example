@@ -9,17 +9,18 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+
         let width   = this.size.width  || this.node.width;
         let height  = this.size.height || this.node.height;
 
-        let node = new cc.Node();
-        let body = node.addComponent(cc.RigidBody);
-        body.type = cc.RigidBodyType.Static;
+        let node    = new cc.Node();
+        let body    = node.addComponent(cc.RigidBody);
+        body.type   = cc.RigidBodyType.Static;
 
         if (this.mouseJoint) {
             // add mouse joint
             let joint = node.addComponent(cc.MouseJoint);
-            joint.mouseRegion = this.node;    
+            joint.mouseRegion = this.node;
         }
         
         this._addBound(node, 0, height/2, width, 20);
