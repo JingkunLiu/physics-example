@@ -5,13 +5,16 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+
         particleNumber: 12,
         particleRadius: 30,
         sphereSize: 12
+        
     },
 
     // use this for initialization
     init: function () {
+
         this.ctx = this.getComponent(cc.Graphics);
 
         this.ctx.lineWidth   = 6;
