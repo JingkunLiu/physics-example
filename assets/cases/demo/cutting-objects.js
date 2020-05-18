@@ -99,8 +99,7 @@ cc.Class({
 
                     if (r) {
                         pair.splice(pair.indexOf(r), 1);
-                    }
-                    else { 
+                    } else {
                         pair.push(result);
                     }
 
