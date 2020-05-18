@@ -71,6 +71,7 @@ cc.Class({
     },
 
     _createSphere (x, y, r, node) {
+        
         if (!node) {
             node = new cc.Node();
             node.x = x;

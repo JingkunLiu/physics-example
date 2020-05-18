@@ -8,21 +8,21 @@ function compare(a, b) {
         return 1;
     } else if (a.fraction < b.fraction) {
         return -1;
-
     }
     return 0;
 }
 
-function equals (a, b, epsilon) {
+function equals(a, b, epsilon) {
     epsilon = epsilon === undefined ? EPSILON : epsilon;
     return Math.abs(a-b) < epsilon;
 }
+
 
 function equalsVec2(a,b, epsilon) {
     return equals(a.x, b.x, epsilon) && equals(a.y, b.y, epsilon);
 }
 
-function pointInLine (point, a, b) {
+function pointInLine(point, a, b) {
     return cc.Intersection.pointLineDistance(point, a, b, true) < 1;
 }
 
@@ -54,20 +54,21 @@ cc.Class({
     onTouchStart: function (event) {
         this.touching = true;
         this.r1 = this.r2 = this.results = null;
-        this.touchStartPoint = this.touchPoint = cc.v2( event.touch.getLocation() );
+        this.touchStartPoint = this.touchPoint = cc.v2(event.touch.getLocation());
     },
 
     onTouchMove: function (event) {
-        this.touchPoint = cc.v2( event.touch.getLocation() );
+        this.touchPoint = cc.v2(event.touch.getLocation());
     },
 
     onTouchEnd: function (event) {
-        this.touchPoint = cc.v2( event.touch.getLocation() );
+
+        this.touchPoint = cc.v2(event.touch.getLocation());
         this.recalcResults();
         this.touching = false;
 
-        let point = cc.v2( event.touch.getLocation() );
-        if ( equals(this.touchStartPoint.sub(point).magSqr(), 0) ) return;
+        let point = cc.v2(event.touch.getLocation());
+        if (equals(this.touchStartPoint.sub(point).magSqr(), 0)) return;
 
         // recalculate fraction, make fraction from one direction
         this.r2.forEach(r => {
@@ -79,11 +80,14 @@ cc.Class({
         let pairs = [];
         
         for (let i = 0; i < results.length; i++) {
+            
             let find = false;
             let result = results[i];
 
             for (let j = 0; j < pairs.length; j++) {
+
                 let pair = pairs[j];
+
                 if (pair[0] && result.collider === pair[0].collider) {
                     find = true;
 
@@ -288,7 +292,8 @@ cc.Class({
         let manager = cc.director.getPhysicsManager();
 
         // manager.rayCast() method calls this function only when it sees that a given line gets into the body - it doesnt see when the line gets out of it.
-        // I must have 2 intersection points with a body so that it can be sliced, thats why I use manager.rayCast() again, but this time from B to A - that way the point, at which BA enters the body is the point at which AB leaves it!
+        // I must have 2 intersection points with a body so that it can be sliced, thats why I use manager.rayCast() again, 
+        // but this time from B to A - that way the point, at which BA enters the body is the point at which AB leaves it!
         let r1 = manager.rayCast(this.touchStartPoint, point, cc.RayCastType.All);
         let r2 = manager.rayCast(point, this.touchStartPoint, cc.RayCastType.All);
 
@@ -297,7 +302,7 @@ cc.Class({
         for (let i = 0; i < results.length; i++) {
             let p = results[i].point;
             this.ctx.circle(p.x, p.y, 5);
-        }  
+        }
         this.ctx.fill();
 
         this.r1 = r1;
