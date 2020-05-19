@@ -127,7 +127,6 @@ cc.Class({
             for (let j = 0; j < (pair.length - 1); j +=2) {
                 let r1 = pair[j];
                 let r2 = pair[j+1];
-
                 if (r1 && r2) {
                     this.split(r1.collider, r1.point, r2.point, splitResults);
                 }
@@ -187,7 +186,7 @@ cc.Class({
     },
 
     split: function (collider, p1, p2, splitResults) {
-        let body = collider.body;
+        let body   = collider.body;
         let points = collider.points;
 
 

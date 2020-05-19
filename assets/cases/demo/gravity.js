@@ -7,6 +7,7 @@ cc.Class({
 
         this.bodies = [];
         this.body = this.getComponent(cc.RigidBody);
+        
         this.originGravity = manager.gravity;
         manager.gravity = cc.v2();
     },
@@ -28,6 +29,7 @@ cc.Class({
     
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
+
         if (!this.body) {
             return;
         }
@@ -40,4 +42,5 @@ cc.Class({
 
     _applyForce: function (body) {
     }
+
 });
