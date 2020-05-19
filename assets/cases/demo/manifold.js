@@ -10,8 +10,8 @@ cc.Class({
 
     onPreSolve: function (contact) {
         let worldManifold = contact.getWorldManifold();
-        let points = worldManifold.points;
-        let scene = cc.director.getScene();
+        let points  = worldManifold.points;
+        let scene   = cc.director.getScene();
 
         function removeSelf () {
             this.parent = null;
@@ -20,12 +20,12 @@ cc.Class({
         for (let i = 0; i < points.length; i++) {
             let p = points[i];
             
-            let node = cc.instantiate(this.pointTemp);
+            let node    = cc.instantiate(this.pointTemp);
             node.active = true;
 
             let fadeOut = cc.fadeOut(0.2);
-            let remove = cc.callFunc(removeSelf, node);
-            let action = cc.sequence(fadeOut, remove);
+            let remove  = cc.callFunc(removeSelf, node);
+            let action  = cc.sequence(fadeOut, remove);
 
             node.runAction(action);
             node.x = p.x;
@@ -37,6 +37,5 @@ cc.Class({
 
     // called every frame, uncomment this function to activate update callback
     // update: function (dt) {
-        
     // },
 });
