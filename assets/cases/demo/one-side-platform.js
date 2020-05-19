@@ -16,11 +16,11 @@ cc.Class({
 
         let cache = this._pointsCache;
 
-        let otherBody     = otherCollider.body;
-        let platformBody  = selfCollider.body;
+        let otherBody        = otherCollider.body;
+        let platformBody     = selfCollider.body;
 
-        let worldManifold = contact.getWorldManifold();
-        let points        = worldManifold.points;
+        let worldManifold    = contact.getWorldManifold();
+        let points           = worldManifold.points;
 
         let pointVelPlatform = this.pointVelPlatform;
         let pointVelOther    = this.pointVelOther;
@@ -29,6 +29,7 @@ cc.Class({
 
         //check if contact points are moving into platform
         for (let i = 0; i < points.length; i++) {
+
             platformBody.getLinearVelocityFromWorldPoint(points[i], pointVelPlatform);
             otherBody.getLinearVelocityFromWorldPoint(points[i], pointVelOther);
 
@@ -48,6 +49,7 @@ cc.Class({
             } else {
                 //moving up faster than 1 m/s
             }
+
         }
 
         // store disabled state to contact
