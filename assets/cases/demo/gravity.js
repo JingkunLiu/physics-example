@@ -7,7 +7,7 @@ cc.Class({
 
         this.bodies = [];
         this.body = this.getComponent(cc.RigidBody);
-        
+
         this.originGravity = manager.gravity;
         manager.gravity = cc.v2();
     },
