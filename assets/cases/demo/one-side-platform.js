@@ -33,6 +33,7 @@ cc.Class({
             platformBody.getLinearVelocityFromWorldPoint(points[i], pointVelPlatform);
             otherBody.getLinearVelocityFromWorldPoint(points[i], pointVelOther);
 
+            // 计算相对速度
             platformBody.getLocalVector(pointVelOther.subSelf(pointVelPlatform), relativeVel);
             
             if (relativeVel.y < -32) {//if moving down faster than 32 pixel/s (1m/s), handle as before
