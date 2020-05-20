@@ -6,14 +6,14 @@ cc.Class({
             default: cc.RayCastType.Closest,
             type: cc.RayCastType
         },
-
+        
         radius: 1000
     },
 
     // use this for initialization
     onLoad: function () {
-        this.ctx = this.getComponent(cc.Graphics);
-        this.angle = 0;
+        this.ctx    = this.getComponent(cc.Graphics);
+        this.angle  = 0;
         this.center = cc.v2(cc.winSize.width/2, cc.winSize.height/2);
     },
 
@@ -41,15 +41,14 @@ cc.Class({
 
         results.forEach(result => {
             this.ctx.circle(result.point.x, result.point.y, 5);
-        });    
-        
+        });
         this.ctx.fill();
 
         this.ctx.moveTo(p1.x, p1.y);
         this.ctx.lineTo(p2.x, p2.y);
         this.ctx.stroke();
     },
-    
+
 
     onClosestBtnClick: function () {
         this.rayCastType = cc.RayCastType.Closest;
