@@ -19,10 +19,11 @@ cc.Class({
 
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
+
         this.angle += Math.PI / 10 * dt;
 
         var p1 = this.center;
-        var p2 = cc.v2(Math.cos(this.angle), Math.sin(this.angle)).mulSelf(this.radius).addSelf( this.center );
+        var p2 = cc.v2(Math.cos(this.angle), Math.sin(this.angle)).mulSelf(this.radius).addSelf(this.center);
 
         var manager = cc.director.getPhysicsManager();
         var results = manager.rayCast(p1, p2, this.rayCastType);
@@ -31,9 +32,11 @@ cc.Class({
 
         if (this.rayCastType === cc.RayCastType.Closest ||
             this.rayCastType === cc.RayCastType.Any) {
+
             if (results[0]) {
                 p2 = results[0].point;
             }
+            
         }
 
         results.forEach(result => {
@@ -46,6 +49,7 @@ cc.Class({
         this.ctx.lineTo(p2.x, p2.y);
         this.ctx.stroke();
     },
+    
 
     onClosestBtnClick: function () {
         this.rayCastType = cc.RayCastType.Closest;
