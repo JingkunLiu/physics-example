@@ -2,6 +2,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        
         rayCastType: {
             default: cc.RayCastType.Closest,
             type: cc.RayCastType
