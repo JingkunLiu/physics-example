@@ -38,7 +38,6 @@ cc.Class({
         var dirVec = cc.v2(Math.cos(this.angle), Math.sin(this.angle));
         this.testRayCast(p1, dirVec)
     },
-
     testRayCast: function(startLocation, dirVec) {
         if (this.remainLength <= 0) {
             return;
@@ -57,8 +56,7 @@ cc.Class({
             var tDrawLen = tPoint.sub(startLocation).mag();
             this.remainLength -= tDrawLen;
 
-            //const vector_r = vector_i.sub(vector_n.mul(2 * vector_i.dot(vector_n)));
-            var normalVec = result.normal;
+            var normalVec     = result.normal;
             var reflectDirVec = dirVec.sub(normalVec.mul(2 * dirVec.dot(normalVec)));
             this.testRayCast(tPoint, reflectDirVec);
         } else {
@@ -73,10 +71,9 @@ cc.Class({
 
         this.ctx.moveTo(startLocation.x, startLocation.y);
 
-        var delta    = 20;
-        var dirVec   = endLocation.sub(startLocation);
+        var delta = 10;
+        var dirVec = endLocation.sub(startLocation);
         var totalCnt = Math.round(dirVec.mag() / delta);
-        //console.log("######cnt:", totalCnt);
 
         dirVec.normalizeSelf().mulSelf(delta);
 
