@@ -1,5 +1,3 @@
-// http://www.iforce2d.net/b2dtut/sticky-projectiles
-// http://www.emanueleferonato.com/2012/12/14/box2d-flying-arrow-engine-first-attempt/
 
 cc.Class({
     extends: cc.Component,
@@ -23,14 +21,14 @@ cc.Class({
             return;
         }
 
-        let arrowBody = selfCollider.body;
+        let arrowBody  = selfCollider.body;
         let targetBody = otherCollider.body;
-        let worldCoordsAnchorPoint = arrowBody.getWorldPoint( cc.v2(0.6, 0) );
-    
-        joint.connectedBody = targetBody;
-        joint.anchor = arrowBody.getLocalPoint( worldCoordsAnchorPoint );
-        joint.connectedAnchor = targetBody.getLocalPoint( worldCoordsAnchorPoint );
-        joint.referenceAngle = targetBody.node.rotation - arrowBody.node.rotation;
+        let worldCoordsAnchorPoint = arrowBody.getWorldPoint(cc.v2(0.6, 0));
+
+        joint.anchor = arrowBody.getLocalPoint(worldCoordsAnchorPoint);
+        joint.connectedBody   = targetBody;
+        joint.connectedAnchor = targetBody.getLocalPoint(worldCoordsAnchorPoint);
+        joint.referenceAngle  = targetBody.node.rotation - arrowBody.node.rotation;
 
         joint.enabled = true;
     }

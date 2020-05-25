@@ -29,7 +29,9 @@ cc.Class({
         this.arrowBodies = [];
     },
 
+
     onTouchBegan: function (event) {
+
         let touchLoc = event.touch.getLocation();
 
         let node = cc.instantiate(this.arrow);
@@ -37,6 +39,8 @@ cc.Class({
 
         let vec = cc.v2(touchLoc).sub(node.position);
         node.rotation = -Math.atan2(vec.y, vec.x) * 180 / Math.PI;
+        console.log("####vec:(", vec.x, vec.y, ")", Math.atan2(vec.y, vec.x), " rotation:", -Math.atan2(vec.y, vec.x) * 180 / Math.PI);
+
 
         cc.director.getScene().addChild(node);
 
@@ -47,29 +51,38 @@ cc.Class({
         arrowBody.linearVelocity = velocity;
 
         this.arrowBodies.push(arrowBody);
+
     },
 
+
+    
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {
+
         let dragConstant = 0.1;
         let arrowBodies = this.arrowBodies;
+
         for (let i = 0; i < arrowBodies.length; i++) {
             let arrowBody = arrowBodies[i];
+
             let velocity = arrowBody.linearVelocity;
             let speed = velocity.mag();
             if (speed === 0) continue;
+
             let direction = velocity.normalize();
 
-            let pointingDirection = arrowBody.getWorldVector( cc.v2( 1, 0 ) );
-            let flightDirection = arrowBody.linearVelocity;
-            let flightSpeed = flightDirection.mag();
+            let pointingDirection   = arrowBody.getWorldVector(cc.v2(1, 0));
+
+            let flightDirection     = arrowBody.linearVelocity;
+            let flightSpeed         = flightDirection.mag();
+
             flightDirection.normalizeSelf();
-            
             let dot = flightDirection.dot(pointingDirection);
             let dragForceMagnitude = (1 - Math.abs(dot)) * flightSpeed * flightSpeed * dragConstant * arrowBody.getMass();
             
-            let arrowTailPosition = arrowBody.getWorldPoint( cc.v2( -80, 0 ) );
-            arrowBody.applyForce( flightDirection.mul(-dragForceMagnitude), arrowTailPosition, false );
+            let arrowTailPosition = arrowBody.getWorldPoint(cc.v2(-80, 0));
+            arrowBody.applyForce(flightDirection.mul(-dragForceMagnitude), arrowTailPosition, false); 
         }
+
     },
 });

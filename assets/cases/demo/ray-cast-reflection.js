@@ -64,7 +64,6 @@ cc.Class({
         }
     },
 
-
     drawAimLine: function(startLocation, endLocation) {
 
         startLocation = cc.v2(startLocation.x, startLocation.y);
